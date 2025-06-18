@@ -18,3 +18,18 @@ for i in range(rand.randint(2,10)):
 
 print(dicts)
 
+
+common_dict = {}
+
+for dict_num, d in enumerate(dicts, start=1):
+    for key, value in d.items():
+        if key in common_dict:
+            if value > common_dict[key][0]:
+                common_dict[key] = (value, dict_num)
+        else:
+            common_dict[key] = (value, None)
+
+
+final_dict = {f"{key}_{dict_num}" if dict_num else key: value for key, (value, dict_num) in common_dict.items()}
+
+print(final_dict)
